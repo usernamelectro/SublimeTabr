@@ -95,6 +95,10 @@ class TabrCountCommand(sublime_plugin.EventListener):
 	def on_modified(self, view):
 
 		global TabrVariables
+		
+		# https://github.com/jfcherng-sublime/ST-AutoSetSyntax/issues/9#issuecomment-1034850164
+        	if (view != sublime.active_window().active_view()):
+            		return
 
 		if (len(TabrVariables['TabrSelections']) > 0):
 			TabrVariables['TabrSelections'][TabrVariables['TabrCurrentSelection']]['difference'] = view.size() - TabrVariables['viewSize']
